@@ -10,5 +10,5 @@ object Appl extends App{
   val size=10
   val utils=new Utils
   val generator=new WordsGenerator
-  utils.printMapConsole(generator.buildBoard(ANIMALS,n,size),size)
+  utils.printMapConsole(generator.buildBoard(1,ANIMALS,n,size),size)
 }

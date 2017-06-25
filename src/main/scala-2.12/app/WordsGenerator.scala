@@ -42,7 +42,7 @@ class WordsGenerator {
     true
   }
 
-  def buildBoard(category: Categories, n: Int, size: Int): Array[Array[Char]] = {
+  def buildBoard(level: Int,category: Categories, n: Int, size: Int): Array[Array[Char]] = {
     val words = chooseWordsFromCategory(category, n, size)
     val res = Array.ofDim[Char](size, size)
     for (i <- 0 until size; j <- 0 until size)
@@ -50,38 +50,37 @@ class WordsGenerator {
     val rand = new Random()
     for (i <- words.indices) {
       words(i) = words(i).trim.toUpperCase()
-      println(words(i))
     }
     words.foreach((s) => {
       var dir: Directions = null
       var indX = -1
       var indY = -1
       do {
-        dir = Directions.rand()
+        dir = Directions.rand(level)
         dir match {
-          case U =>
-            indX = rand.nextInt(size)
-            indY = size - 1 - rand.nextInt(size + 1 - s.length)
-          case UR =>
-            indX = rand.nextInt(size + 1 - s.length)
-            indY = size - 1 - rand.nextInt(size + 1 - s.length)
           case R =>
             indX = rand.nextInt(size + 1 - s.length)
             indY = rand.nextInt(size)
-          case DR =>
-            indX = rand.nextInt(size + 1 - s.length)
-            indY = rand.nextInt(size + 1 - s.length)
           case D =>
             indX = rand.nextInt(size)
-            indY = rand.nextInt(size + 1 - s.length)
-          case DL =>
-            indX = size - 1 - rand.nextInt(size + 1 - s.length)
             indY = rand.nextInt(size + 1 - s.length)
           case L =>
             indX = size - 1 - rand.nextInt(size + 1 - s.length)
             indY = rand.nextInt(size)
+          case U =>
+            indX = rand.nextInt(size)
+            indY = size - 1 - rand.nextInt(size + 1 - s.length)
+          case DR =>
+            indX = rand.nextInt(size + 1 - s.length)
+            indY = rand.nextInt(size + 1 - s.length)
+          case DL =>
+            indX = size - 1 - rand.nextInt(size + 1 - s.length)
+            indY = rand.nextInt(size + 1 - s.length)
           case UL =>
             indX = size - 1 - rand.nextInt(size + 1 - s.length)
+            indY = size - 1 - rand.nextInt(size + 1 - s.length)
+          case UR =>
+            indX = rand.nextInt(size + 1 - s.length)
             indY = size - 1 - rand.nextInt(size + 1 - s.length)
         }
       }
