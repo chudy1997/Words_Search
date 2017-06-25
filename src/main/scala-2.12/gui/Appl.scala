@@ -1,16 +1,21 @@
 package gui
 
+import javafx.event.EventHandler
+import javafx.scene.input
+
 import app.Appl.utils
 import app.Categories.ANIMALS
 
 import scalafx.application.JFXApp
 import scalafx.geometry.Insets
+import scalafx.event.ActionEvent
 import scalafx.scene.Scene
 import scalafx.scene.effect.{DropShadow, ImageInput}
 import scalafx.scene.layout.HBox
 import scalafx.scene.paint.{Color, LinearGradient, Stops}
 import scalafx.scene.text.Text
 import scalafx.scene.image.{Image, ImageView}
+import scalafx.scene.input.MouseEvent
 import app.{Utils, WordsGenerator}
 
 import scalafx.scene.control.Label
@@ -51,6 +56,7 @@ object Appl extends JFXApp{
               radius = 40
               spread = 0.25
             }
+
           }
         )
         }
@@ -62,10 +68,11 @@ object Appl extends JFXApp{
       utils.printMapConsole(arr, 10)
       for(i <- 0 until 10) {
         for (j <- 0 until 10) {
-          val image = if (i==j) new Image("file:Images/"+arr(i)(j)+"2.png") else new Image("file:Images/"+arr(i)(j)+".png")
-          val cell = new ImageView(image){
-            layoutX = 400 - 5* 36 - 1 + j * 36
+          val image =  new Image("file:Images/"+arr(i)(j)+".png")
+          val cell = new ImageView(image) {
+            layoutX = 400 - 5 * 36 - 1 + j * 36
             layoutY = 120 + i * 36
+            onMouseClicked = {_ => image = new Image("file:Images/"+arr(i)(j)+"2.png")}
           }
 
           boardCells ::= cell
