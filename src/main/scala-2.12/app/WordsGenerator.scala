@@ -26,6 +26,7 @@ class WordsGenerator {
       while (tmp.length > size || res.contains(tmp))
       res += tmp
     }
+    res.foreach(println)
     res.sortWith { (s1, s2) => s1.length > s2.length }
   }
 

@@ -1,23 +1,20 @@
 package gui
 
-import app.Categories.ANIMALS
-import app.{Utils, WordsGenerator}
+import app.{Categories, Utils, WordsGenerator}
 
-import scalafx.application.JFXApp
 import scalafx.scene.Scene
 import scalafx.scene.effect.DropShadow
 import scalafx.scene.image.{Image, ImageView}
 import scalafx.scene.paint.{Color, LinearGradient, Stops}
 import scalafx.scene.text.Text
+import scalafx.stage.Stage
 
 /**
-  * Created by Karol on 2017-06-24.
+  * Created by Karol on 2017-06-26.
   */
-
-object Appl extends JFXApp{
-  stage = new JFXApp.PrimaryStage {
-    title = "Words Search"
-    scene = new Scene(800,600) {
+object Game {
+  def startGame(stage: Stage, level: Int,category: String): Unit ={
+    stage.scene=new Scene(800,600) {
       fill = Color.rgb(38, 38, 38)
       val titleText1=new Text(70,82,"WORDS"){
         style = "-fx-font: normal bold 60pt sans-serif"
@@ -47,7 +44,7 @@ object Appl extends JFXApp{
 
       var boardCells = List[ImageView]()
       val generator=new WordsGenerator
-      val arr = generator.buildBoard(1,ANIMALS,2, 10)
+      val arr = generator.buildBoard(level,Categories.convert(category),10, 10)
       val utils = new Utils
       utils.printMapConsole(arr, 10)
       for(i <- 0 until 10) {
