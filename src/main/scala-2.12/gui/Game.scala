@@ -81,7 +81,11 @@ object Game {
             Menu.start()
           }
         }
-        content=List(text,menuButton)
+        val footer = new Text(220, 580, "Julia Sypień, KarolBartyzel © 2017. All rights reserved") {
+          style = "-fx-font: normal bold 10pt sans-serif"
+          fill = col
+        }
+        content=List(text,menuButton,footer)
       }
 
       giveupButton.onMouseClicked=(e)=>{

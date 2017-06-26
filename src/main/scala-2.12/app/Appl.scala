@@ -3,12 +3,12 @@
   */
 package app
 
-import app.Categories._
+//REDUNDANT!!!
 
 object Appl extends App{
   val n=2
   val size=10
   val utils=new Utils
   val generator=new WordsGenerator
-  utils.printMapConsole(generator.buildBoard(1,ANIMALS,n,size),size)
+  utils.printMapConsole(generator.buildBoard(1,Categories.Stolice,n,size),size)
 }

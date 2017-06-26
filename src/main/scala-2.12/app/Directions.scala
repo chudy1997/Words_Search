@@ -7,9 +7,11 @@ object Directions extends Enumeration{
   type Directions=Value
   val R,D,L,U,DR,DL,UL,UR = Value
 
-  def rand(level: Int): Directions = if(level==1) Directions(scala.util.Random.nextInt(2))
-    else if(level==2) Directions(scala.util.Random.nextInt(4))
+  def rand(level: Int): Directions = {
+    if (level == 1) Directions(scala.util.Random.nextInt(2))
+    else if (level == 2) Directions(scala.util.Random.nextInt(4))
     else Directions(scala.util.Random.nextInt(8))
+  }
   def offset(dir: Directions): Tuple2[Int,Int] = dir match {
     case R => (1,0)
     case D => (0,1)

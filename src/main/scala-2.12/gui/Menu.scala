@@ -134,7 +134,7 @@ object Menu extends JFXApp{
         spread = 0.25
       }
     }
-    val chooseText=new Text(230,180,"Choose level") {
+    val chooseText=new Text(230,150,"Choose level") {
       style = "-fx-font: normal bold 40pt sans-serif"
       fill = col
     }
@@ -142,9 +142,9 @@ object Menu extends JFXApp{
       style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: "+butBackgroundCol
       this.textFill=col
       layoutX=275
-      layoutY=225
+      layoutY=190
       prefWidth=250
-      prefHeight=75
+      prefHeight=70
       onMouseEntered = (e) => {
         style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: " + hoverColor
       }
@@ -156,9 +156,9 @@ object Menu extends JFXApp{
       style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: "+butBackgroundCol
       this.textFill=col
       layoutX=275
-      layoutY=350
+      layoutY=280
       prefWidth=250
-      prefHeight=75
+      prefHeight=70
       onMouseEntered = (e) => {
         style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: " + hoverColor
       }
@@ -170,9 +170,23 @@ object Menu extends JFXApp{
       style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: "+butBackgroundCol
       this.textFill=col
       layoutX=275
-      layoutY=475
+      layoutY=370
       prefWidth=250
-      prefHeight=75
+      prefHeight=70
+      onMouseEntered = (e) => {
+        style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: " + hoverColor
+      }
+      onMouseExited = (e) => {
+        style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: " + butBackgroundCol
+      }
+    }
+    val butBack=new Button("Back"){
+      style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: "+butBackgroundCol
+      this.textFill=col
+      layoutX=275
+      layoutY=460
+      prefWidth=250
+      prefHeight=70
       onMouseEntered = (e) => {
         style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: " + hoverColor
       }
@@ -185,7 +199,7 @@ object Menu extends JFXApp{
       fill = col
     }
 
-    content=List(titleText1,titleText2,chooseText,butEasy,butMedium,butHard,footer)
+    content=List(titleText1,titleText2,chooseText,butEasy,butMedium,butHard,butBack,footer)
   }
 
 
@@ -292,18 +306,36 @@ object Menu extends JFXApp{
         spread = 0.25
       }
     }
-    val chooseText = new Text(180, 180, "Choose category") {
+    val chooseText = new Text(180, 160, "Choose category") {
       style = "-fx-font: normal bold 40pt sans-serif"
       fill = col
     }
-    val categoryList= new ComboBox(List("animals","countries")){
+    val categoryList= new ComboBox(List("Imiona","Kosmos","Miasta","Morza","Państwa","Rośliny","Samochody","Stolice","Zawody","Zwierzęta")){
       style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: "+butBackgroundCol
       layoutX=200
-      layoutY=250
+      layoutY=200
       prefWidth=400
+      visibleRowCount=5
       onAction=(e)=>{
-        category=this.selectionModel.apply.getSelectedItem.toUpperCase
+        category=this.selectionModel.apply.getSelectedItem
         Game.startGame(stage,mainScene,level,category)
+      }
+    }
+    val backButton=new Button("Back"){
+      style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: " + butBackgroundCol
+      this.textFill = col
+      layoutX = 275
+      layoutY = 470
+      prefWidth = 250
+      prefHeight = 80
+      onMouseEntered = (e) => {
+        style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: " + hoverColor
+      }
+      onMouseExited = (e) => {
+        style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: " + butBackgroundCol
+      }
+      onMouseClicked = (e) => {
+        stage.scene = levelScene
       }
     }
 
@@ -311,7 +343,7 @@ object Menu extends JFXApp{
       style = "-fx-font: normal bold 10pt sans-serif"
       fill = col
     }
-    content = List(titleText1, titleText2, chooseText,categoryList,footer)
+    content = List(titleText1, titleText2, chooseText,categoryList,backButton,footer)
   }
 
 
@@ -332,7 +364,9 @@ object Menu extends JFXApp{
     level=3
     stage.scene=categoryScene
   }
-
+  levelScene.butBack.onMouseClicked= (e) => {
+    stage.scene=mainScene
+  }
   def start(): Unit ={
     this.stage.scene=mainScene
   }
