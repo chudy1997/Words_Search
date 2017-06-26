@@ -97,22 +97,48 @@ object Game {
       }
       content=List(titleText1,titleText2,giveupButton,footer)
 
-      var boardCells = List[ImageView]()
+      var boardCells = Array.ofDim[ImageView](10, 10)
       val generator=new WordsGenerator
       val arr = generator.buildBoard(level,Categories.convert(category),10, 10)
       val utils = new Utils
       utils.printMapConsole(arr, 10)
+      var indexes = new Tuple2(1, 1)
       for(i <- 0 until 10) {
         for (j <- 0 until 10) {
           val image =  new Image("file:Images/"+arr(i)(j)+".png")
           val cell = new ImageView(image) {
             layoutX = 400 - 5 * 36 - 1 + j * 36
             layoutY = 120 + i * 36
-            onMouseClicked = {_ => image = new Image("file:Images/"+arr(i)(j)+"2.png")}
+            mouseTransparent = true
           }
 
-          boardCells ::= cell
+          boardCells(i)(j) = cell
           content.add(cell)
+        }
+      }
+      onMousePressed = (e) => {
+        if(e.getX >= 400 - 5 * 36 && e.getX<= 400 - 5 * 36 + 359
+          && e.getY >= 121 && e.getY <= 121 + 359) {
+          println("Pressed")
+
+        }
+      }
+      onMouseDragged = (e) => {
+        if(e.getX >= 400 - 5 * 36 && e.getX<= 400 - 5 * 36 + 359
+          && e.getY >= 121 && e.getY <= 121 + 359) {
+          val j = (( e.getX - (400 - 5 * 36))/36).toInt
+          val i = ((e.getY - 121)/36).toInt
+
+          boardCells(i)(j).image =  new Image("file:Images/"+arr(i)(j)+"2.png")
+          println("j: "+j+" i: "+i)
+
+        }
+      }
+      onMouseReleased= (e) => {
+        if(e.getX >= 400 - 5 * 36 && e.getX<= 400 - 5 * 36 + 359
+          && e.getY >= 121 && e.getY <= 121 + 359) {
+          println("Released")
+
         }
       }
     }
