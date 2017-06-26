@@ -52,7 +52,7 @@ object Menu extends JFXApp{
       style = "-fx-font: normal bold 40pt sans-serif"
       fill = col
     }
-    val butStart=new Button("Start game"){
+    val butStart=new Button("Start"){
       style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: "+butBackgroundCol
       this.textFill=col
       layoutX=275
@@ -303,7 +303,7 @@ object Menu extends JFXApp{
       prefWidth=400
       onAction=(e)=>{
         category=this.selectionModel.apply.getSelectedItem.toUpperCase
-        Game.startGame(stage,level,category)
+        Game.startGame(stage,mainScene,level,category)
       }
     }
 
@@ -313,10 +313,6 @@ object Menu extends JFXApp{
     }
     content = List(titleText1, titleText2, chooseText,categoryList,footer)
   }
-
-
-
-  val startGame= () => 1
 
 
 
@@ -337,5 +333,8 @@ object Menu extends JFXApp{
     stage.scene=categoryScene
   }
 
-  stage.scene=mainScene
+  def start(): Unit ={
+    this.stage.scene=mainScene
+  }
+  start()
 }
