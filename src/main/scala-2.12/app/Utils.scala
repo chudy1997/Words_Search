@@ -1,6 +1,6 @@
 package app
 
-import scalafx.scene.image.Image
+import scalafx.scene.image.{Image, ImageView}
 
 /**
   * Created by Karol on 2017-06-23.
@@ -77,6 +77,12 @@ class Utils {
       }
     }
     res
+  }
+  def highlight(cell:Tuple2[Int, Int], cellBoard:Array[Array[ImageView]], arr:Array[Array[Char]]) {
+    cellBoard(cell._1)(cell._2).image = new Image("file:Images/" + arr(cell._1)(cell._2) + "2.png")
+  }
+  def dim(cell:Tuple2[Int, Int], cellBoard:Array[Array[ImageView]], arr:Array[Array[Char]]) {
+    cellBoard(cell._1)(cell._2).image = new Image("file:Images/" + arr(cell._1)(cell._2) + ".png")
   }
 
 }

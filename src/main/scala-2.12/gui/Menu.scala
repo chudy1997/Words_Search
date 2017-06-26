@@ -48,7 +48,7 @@ object Menu extends JFXApp{
         spread = 0.25
       }
     }
-    val chooseText=new Text(70,180,"Welcome in Words Search") {
+    val chooseText=new Text(70,180,"Welcome to Words Search") {
       style = "-fx-font: normal bold 40pt sans-serif"
       fill = col
     }

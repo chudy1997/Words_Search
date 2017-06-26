@@ -133,27 +133,27 @@ object Game {
           && e.getY >= 121 && e.getY <= 121 + 359 && !indexes.equals(Tuple2(-1, -1))) {
           val j = (( e.getX - (400 - 5 * 36))/36).toInt
           val i = ((e.getY - 121)/36).toInt
-          for(coords <- signed)
-            boardCells(coords._1)(coords._2).image =  new Image("file:Images/"+arr(coords._1)(coords._2)+".png")
+          for(cell <- signed)
+            utils.dim(cell, boardCells, arr)
           signed = List[Tuple2[Int, Int]]()
           if(i == indexes._1 || i - indexes._1 == j - indexes._2 ||
             j == indexes._2 || i - indexes._1 == -(j - indexes._2)){
             signed = utils.between(Tuple2(i,j), indexes)
             for(cell <- signed)
-              boardCells(cell._1)(cell._2).image =  new Image("file:Images/"+arr(cell._1)(cell._2)+"2.png")
+              utils.highlight(cell, boardCells, arr)
           }
         }
         else{
-          for(coords <- signed)
-            boardCells(coords._1)(coords._2).image =  new Image("file:Images/"+arr(coords._1)(coords._2)+".png")
+          for(cell <- signed)
+            utils.dim(cell, boardCells, arr)
           signed = List[Tuple2[Int, Int]]()
         }
       }
       onMouseReleased= (e) => {
         if(e.getX >= 400 - 5 * 36 && e.getX<= 400 - 5 * 36 + 359
           && e.getY >= 121 && e.getY <= 121 + 359) {
-          for(coords <- signed)
-            boardCells(coords._1)(coords._2).image =  new Image("file:Images/"+arr(coords._1)(coords._2)+".png")
+          for(cell <- signed)
+            utils.dim(cell, boardCells, arr)
           signed = List[Tuple2[Int, Int]]()
 
         }
