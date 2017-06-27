@@ -13,6 +13,11 @@ import scala.util.Random
 class WordsGenerator {
   private val letters: Array[Char] = Array('A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł',
     'M', 'N', 'Ń', 'O', 'Ó', 'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ź', 'Ż')
+  private var wordset = new mutable.MutableList[String]()
+
+  def getWordset():mutable.MutableList[String] ={
+    wordset
+  }
 
   private def chooseWordsFromCategory(category: Categories, n: Int, size: Int): mutable.MutableList[String] = {
     val rand = new Random()
@@ -45,6 +50,7 @@ class WordsGenerator {
 
   def buildBoard(level: Int,category: Categories, n: Int, size: Int): Array[Array[Char]] = {
     val words = chooseWordsFromCategory(category, n, size)
+    wordset = words //?
     val res = Array.ofDim[Char](size, size)
     for (i <- 0 until size; j <- 0 until size)
       res(i)(j) = ' '

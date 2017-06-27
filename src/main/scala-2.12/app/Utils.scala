@@ -1,5 +1,6 @@
 package app
 
+import scala.collection.mutable
 import scalafx.scene.image.{Image, ImageView}
 
 /**
@@ -78,10 +79,27 @@ class Utils {
     }
     res
   }
-  def highlight(cell:Tuple2[Int, Int], cellBoard:Array[Array[ImageView]], arr:Array[Array[Char]]) {
+
+  def wordMarked(signed: List[Tuple2[Int, Int]], arr: Array[Array[Char]]): mutable.MutableList[String] = {
+    val betw1 = signed
+    val betw2 = signed.reverse
+    var s1 = ""
+    var s2 = ""
+    for (cell <- betw1)
+      s1 += arr(cell._1)(cell._2)
+    for (cell <- betw2)
+      s2 += arr(cell._1)(cell._2)
+    val res = new mutable.MutableList[String]()
+    res += s1
+    res += s2
+    res
+  }
+
+  def highlight(cell: Tuple2[Int, Int], cellBoard: Array[Array[ImageView]], arr: Array[Array[Char]]) {
     cellBoard(cell._1)(cell._2).image = new Image("file:Images/" + arr(cell._1)(cell._2) + "2.png")
   }
-  def dim(cell:Tuple2[Int, Int], cellBoard:Array[Array[ImageView]], arr:Array[Array[Char]]) {
+
+  def dim(cell: Tuple2[Int, Int], cellBoard: Array[Array[ImageView]], arr: Array[Array[Char]]) {
     cellBoard(cell._1)(cell._2).image = new Image("file:Images/" + arr(cell._1)(cell._2) + ".png")
   }
 
