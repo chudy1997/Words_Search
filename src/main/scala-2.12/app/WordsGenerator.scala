@@ -24,14 +24,15 @@ class WordsGenerator {
     val source = io.Source.fromFile("words/" + new String(category.toString) + ".txt")
     val allWords = try source.mkString.split("\n").mkString("").split(",") finally source.close()
     val res = new mutable.MutableList[String]()
-    for (i <- 0 until n) {
+
+    for (i <- 1 to n) {
       var tmp = ""
-      do
-        tmp = allWords(rand.nextInt(allWords.length)).split(" ")(0)
+      do {
+        tmp = allWords(rand.nextInt(allWords.length))
+      }
       while (tmp.length > size || res.contains(tmp))
       res += tmp
     }
-    res.foreach(println)
     res.sortWith { (s1, s2) => s1.length > s2.length }
   }
 

@@ -65,9 +65,6 @@ object Menu extends JFXApp{
       onMouseExited=(e)=>{
         style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: "+butBackgroundCol
       }
-      onMouseClicked=(e)=>{
-        println("start")
-      }
     }
     val butOptions=new Button("Options"){
       style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: "+butBackgroundCol
@@ -81,9 +78,6 @@ object Menu extends JFXApp{
       }
       onMouseExited=(e)=>{
         style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: "+butBackgroundCol
-      }
-      onMouseClicked=(e)=>{
-        println("options")
       }
     }
     val butExit=new Button("Exit"){

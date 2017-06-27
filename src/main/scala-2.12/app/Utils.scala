@@ -7,13 +7,6 @@ import scalafx.scene.image.{Image, ImageView}
   * Created by Karol on 2017-06-23.
   */
 class Utils {
-  def printMapConsole(t: Array[Array[Char]], size: Int) {
-    for (i <- 0 until size) {
-      for (j <- 0 until size)
-        print(" " + t(i)(j) + " ")
-      println()
-    }
-  }
 
   def between(t1: Tuple2[Int, Int], t2: Tuple2[Int, Int]): List[Tuple2[Int, Int]] = {
     var res = List[Tuple2[Int, Int]]()
