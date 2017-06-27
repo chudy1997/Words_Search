@@ -312,12 +312,29 @@ object Menu extends JFXApp{
     }
     val categoryList= new ComboBox(List("Imiona","Kosmos","Miasta","Morza","Państwa","Rośliny","Samochody","Stolice","Zawody","Zwierzęta")){
       style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: "+butBackgroundCol
-      layoutX=200
+      layoutX=75
       layoutY=200
       prefWidth=400
+      prefHeight=50
       visibleRowCount=5
       onAction=(e)=>{
         category=this.selectionModel.apply.getSelectedItem
+      }
+    }
+    val confirmButton=new Button("Confirm"){
+      style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: " + butBackgroundCol
+      this.textFill = col
+      layoutX = 525
+      layoutY = 200
+      prefWidth = 200
+      prefHeight = 50
+      onMouseEntered = (e) => {
+        style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: " + hoverColor
+      }
+      onMouseExited = (e) => {
+        style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: " + butBackgroundCol
+      }
+      onMouseClicked = (e) => {
         Game.startGame(stage,mainScene,level,category)
       }
     }
@@ -343,7 +360,7 @@ object Menu extends JFXApp{
       style = "-fx-font: normal bold 10pt sans-serif"
       fill = col
     }
-    content = List(titleText1, titleText2, chooseText,categoryList,backButton,footer)
+    content = List(titleText1, titleText2, chooseText,categoryList,confirmButton,backButton,footer)
   }
 
 
@@ -354,14 +371,17 @@ object Menu extends JFXApp{
   exitScene.noButton.onMouseClicked=(e)=>stage.scene=mainScene
   levelScene.butEasy.onMouseClicked = (e) => {
     level=1
+    categoryScene.categoryList.selectionModel.apply().clearSelection()
     stage.scene=categoryScene
   }
   levelScene.butMedium.onMouseClicked = (e) => {
     level=2
+    categoryScene.categoryList.selectionModel.apply().clearSelection()
     stage.scene=categoryScene
   }
   levelScene.butHard.onMouseClicked = (e) => {
     level=3
+    categoryScene.categoryList.selectionModel.apply().clearSelection()
     stage.scene=categoryScene
   }
   levelScene.butBack.onMouseClicked= (e) => {

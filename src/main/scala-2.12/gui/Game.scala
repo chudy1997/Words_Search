@@ -89,6 +89,36 @@ object Game {
         content = List(text, menuButton, footer)
       }
 
+      val winScene = new Scene(800, 600) {
+        fill = Color.rgb(38, 38, 38)
+        val text = new Text(130, 200, "YOU WON") {
+          style = "-fx-font: normal bold 80pt sans-serif"
+          fill = col
+        }
+        val menuButton = new Button("Menu") {
+          style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: " + butBackgroundCol
+          this.textFill = col
+          layoutX = 300
+          layoutY = 450
+          prefWidth = 200
+          prefHeight = 80
+          onMouseEntered = (e) => {
+            style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: " + hoverColor
+          }
+          onMouseExited = (e) => {
+            style = "-fx-font: normal bold 20pt sans-serif ; -fx-background-color: " + butBackgroundCol
+          }
+          onMouseClicked = (e) => {
+            Menu.start()
+          }
+        }
+        val footer = new Text(220, 580, "Julia Sypień, KarolBartyzel © 2017. All rights reserved") {
+          style = "-fx-font: normal bold 10pt sans-serif"
+          fill = col
+        }
+        content = List(text, menuButton, footer)
+      }
+
       giveupButton.onMouseClicked = (e) => {
         stage.scene = lostScene
       }
@@ -177,6 +207,7 @@ object Game {
 
         }
         indexes = Tuple2(-1, -1)
+        println(leftToFind)
       }
     }
   }
