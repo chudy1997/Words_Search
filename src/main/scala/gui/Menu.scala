@@ -191,7 +191,7 @@ object Menu extends JFXApp {
     mainScene.butStart.onMouseClicked = (e) => stage.scene = levelScene
     mainScene.butOptions.onMouseClicked = (e) => stage.scene = optionsScene
     mainScene.butExit.onMouseClicked = (e) => stage.scene = exitScene
-    categoryScene.onMouseClicked = (e) => stage.scene = levelScene
+    categoryScene.backButton.onMouseClicked = (e) => stage.scene = levelScene
   }
 
   def start(): Unit = {

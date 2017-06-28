@@ -167,7 +167,7 @@ object Game {
             wordsFound.text = "Found: " + (keywords - leftToFind)
             if (leftToFind == 0) {
               val endTime = Calendar.getInstance().getTimeInMillis
-              winScene.timeText.text = "Your time\n" + ((endTime - startTime) / 60000) + " min " + ((endTime - startTime) / 1000) + " sec"
+              winScene.timeText.text = "Your time\n" + ((endTime - startTime) / 60000) + " min " + (((endTime - startTime) / 1000)%60) + " sec"
               stage.scene = winScene
             }
             for (cell <- signed)
