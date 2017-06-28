@@ -9,7 +9,7 @@
 ### -Time is measured as a score of your game. Of course, the shortest is the best. ;) 
 
 ## How to get it? Follow 3 steps listed below!
-### -Go to [Words Search](https://github.com/chudy1997/Words_Search/blob/master/game.zip)
+### -Go to [Words Search](https://github.com/chudy1997/Words_Search/blob/master/jarsrc.zip)
 ### -Press download
 ### -Unzip it and start your game
 
