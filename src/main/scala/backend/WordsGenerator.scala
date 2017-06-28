@@ -17,7 +17,7 @@ object WordsGenerator {
   private val rand = new Random()
 
   private def chooseWordsFromCategory(category: Categories, n: Int, size: Int): mutable.MutableList[String] = {
-    val source = io.Source.fromFile("src/words/" + new String(category.toString) + ".txt")
+    val source = io.Source.fromFile("src/words/" + new String(category.toString)+".txt","UTF8")
     val allWords =
       try
         source.mkString.split("\n").mkString("").split(",")
