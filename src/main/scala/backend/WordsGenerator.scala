@@ -2,34 +2,32 @@
   * Created by Karol on 2017-05-26.
   */
 
-package app
+package backend
 
-import app.Categories._
-import app.Directions._
+import backend.Categories.Categories
+import backend.Directions._
 
 import scala.collection.mutable
 import scala.util.Random
 
-class WordsGenerator {
+object WordsGenerator {
   private val letters: Array[Char] = Array('A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł',
     'M', 'N', 'Ń', 'O', 'Ó', 'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ź', 'Ż')
-  private var wordset = new mutable.MutableList[String]()
-
-  def getWordset():mutable.MutableList[String] ={
-    wordset
-  }
+  var wordset = new mutable.MutableList[String]()
+  private val rand = new Random()
 
   private def chooseWordsFromCategory(category: Categories, n: Int, size: Int): mutable.MutableList[String] = {
-    val rand = new Random()
-    val source = io.Source.fromFile("words/" + new String(category.toString) + ".txt")
-    val allWords = try source.mkString.split("\n").mkString("").split(",") finally source.close()
+    val source = io.Source.fromFile("src/words/" + new String(category.toString) + ".txt")
+    val allWords =
+      try
+        source.mkString.split("\n").mkString("").split(",")
+      finally source.close()
     val res = new mutable.MutableList[String]()
+    var tmp = ""
 
     for (i <- 1 to n) {
-      var tmp = ""
-      do {
+      do
         tmp = allWords(rand.nextInt(allWords.length))
-      }
       while (tmp.length > size || res.contains(tmp))
       res += tmp
     }
@@ -42,23 +40,21 @@ class WordsGenerator {
     for (letter <- s) {
       if (res(xTmp)(yTmp) != ' ' && res(xTmp)(yTmp) != letter)
         return false
-      val newIndexes = Directions.offset(dir)
-      xTmp += newIndexes._1
-      yTmp += newIndexes._2
+      val offset = Directions.offset(dir)
+      xTmp += offset._1
+      yTmp += offset._2
     }
     true
   }
 
-  def buildBoard(level: Int,category: Categories, n: Int, size: Int): Array[Array[Char]] = {
+  def buildBoard(level: Int, category: Categories, n: Int, size: Int): Array[Array[Char]] = {
     val words = chooseWordsFromCategory(category, n, size)
-    wordset = words //?
+    wordset = words
     val res = Array.ofDim[Char](size, size)
     for (i <- 0 until size; j <- 0 until size)
       res(i)(j) = ' '
-    val rand = new Random()
-    for (i <- words.indices) {
+    for (i <- words.indices)
       words(i) = words(i).trim.toUpperCase()
-    }
     words.foreach((s) => {
       var dir: Directions = null
       var indX = -1
@@ -95,9 +91,9 @@ class WordsGenerator {
       while (!checkAvailability(res, s, indX, indY, dir))
       for (c <- s) {
         res(indX)(indY) = c
-        val newIndexes = Directions.offset(dir)
-        indX += newIndexes._1
-        indY += newIndexes._2
+        val offset = Directions.offset(dir)
+        indX += offset._1
+        indY += offset._2
       }
     })
     for (i <- 0 until size; j <- 0 until size)
