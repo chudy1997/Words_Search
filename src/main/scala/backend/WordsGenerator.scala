@@ -26,8 +26,10 @@ object WordsGenerator {
     var tmp = ""
 
     for (i <- 1 to n) {
-      do
+      do {
         tmp = allWords(rand.nextInt(allWords.length))
+        if(tmp(0).equals(13.toChar))tmp=tmp.drop(1)
+      }
       while (tmp.length > size || res.contains(tmp))
       res += tmp
     }

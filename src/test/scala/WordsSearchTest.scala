@@ -1,12 +1,6 @@
-import backend.Categories
-import backend.Categories.Categories
 import backend.Directions.offset
-import backend.Directions
-import backend.WordsGenerator
-import backend.WordsGenerator.{letters, rand}
+import backend.{Categories, Directions, WordsGenerator}
 import org.scalatest._
-
-import scala.collection.mutable
 
 
 class CategoriesTest extends FlatSpec {
