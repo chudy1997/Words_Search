@@ -1,8 +1,8 @@
-# Words Search
+# **_Words Search_**
 
 ## Hello, if you are looking for mental challenge, don't hesitate to try our game ;) 
 
-## Rules?
+## **Rules?**
 ### -There are 8 words to found in 10x10 matrix.
 ### -Words are polish with diacritical characters.
 ### -Words concern one category, which you can choose.
