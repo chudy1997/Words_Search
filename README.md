@@ -8,6 +8,11 @@
 ### -Words concern one category, which you can choose.
 ### -Time is measured as a score of your game. Of course, the shortest is the best. ;) 
 
+## Levels? You choose between 3 levels listed below.
+### -Easy - wanted words are directed right and down.
+### -Medium - wanted words are directed in 4 main directions.
+### -Hard - wanted words are directed in 4 main directions and aslant as well.
+
 ## How to get it? Follow 3 steps listed below!
 ### -Go to [Words Search](https://github.com/chudy1997/Words_Search/blob/master/jarsrc.zip)
 ### -Press download
